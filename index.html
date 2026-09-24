@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Leaf Tabacaria - Loja Online</title>
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --verde-claro: #4ADE80;
+            --verde-medio: #22C55E;
+            --verde-forte: #16A34A;
+            --verde-escuro: #15803D;
+            --preto: #0A0A0A;
+            --preto-suave: #1A1A1A;
+            --preto-card: #1F1F1F;
+            --cinza: #2A2A2A;
+            --cinza-texto: #B0B0B0;
+            --branco: #FFFFFF;
+            --sombra: 0 4px 20px rgba(34, 197, 94, 0.15);
+            --sombra-hover: 0 8px 30px rgba(34, 197, 94, 0.35);
+            --borda-verde: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        body {
+            background: var(--preto);
+            color: var(--branco);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--verde-medio);
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--verde-claro);
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            font-size: 1.9rem;
+            filter: drop-shadow(0 0 8px var(--verde-claro));
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--verde-claro);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: var(--verde-claro);
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        .cart-btn {
+            background: linear-gradient(135deg, var(--verde-medio), var(--verde-forte));
+            color: var(--branco);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 222, 128, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--preto) 0%, var(--preto-suave) 100%);
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .hero::before {
+            content: "🍃";
+            position: absolute;
+            font-size: 18rem;
+            opacity: 0.04;
+            top: -50px;
+            left: -30px;
+            filter: blur(2px);
+        }
+
+        .hero::after {
+            content: "💨";
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.04;
+            bottom: -50px;
+            right: -20px;
+            transform: rotate(-15deg);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid var(--verde-medio);
+            color: var(--verde-claro);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--branco);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+        }
+
+        .hero h1 .destaque {
+            color: var(--verde-claro);
+            text-shadow: 0 0 25px rgba(74, 222, 128, 0.8);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--cinza-texto);
+            margin-bottom: 35px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--verde-medio), var(--verde-forte));
+            color: var(--branco);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.8);
+            background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio));
+        }
+
+        /* ===== SEÇÕES ===== */
+        section {
+            padding: 70px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            color: var(--branco);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            letter-spacing: 1px;
+        }
+
+        .section-title .destaque {
+            color: var(--verde-claro);
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--verde-medio), var(--verde-claro));
+            margin: 15px auto 0;
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(74, 222, 128, 0.7);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--cinza-texto);
+            margin-bottom: 45px;
+            font-size: 1.05rem;
+        }
+
+        /* ===== CATEGORIAS ===== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--preto-card);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--verde-claro);
+            box-shadow: var(--sombra-hover);
+            background: var(--cinza);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.5));
+        }
+
+        .category-card h3 {
+            color: var(--verde-claro);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .category-card p {
+            color: var(--cinza-texto);
+            font-size: 0.9rem;
+        }
+
+        /* ===== PRODUTOS ===== */
+        .products-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(34, 197, 94, 0.05) 100%);
+            border-radius: 20px;
+            padding: 70px 5%;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: var(--preto-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--verde-claro);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, var(--preto-suave), var(--cinza));
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, var(--verde-medio), var(--verde-forte));
+            color: var(--branco);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-info h3 {
+            color: var(--branco);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .product-info p {
+            color: var(--cinza-texto);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--verde-claro);
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+        }
+
+        .btn-buy {
+            background: transparent;
+            color: var(--verde-claro);
+            border: 2px solid var(--verde-medio);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-buy:hover {
+            background: linear-gradient(135deg, var(--verde-medio), var(--verde-forte));
+            color: var(--branco);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* ===== SOBRE ===== */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--preto-suave), var(--cinza));
+            border-radius: 20px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            border: 1px solid var(--verde-medio);
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.2) inset, var(--sombra);
+        }
+
+        .about-text h2 {
+            color: var(--branco);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text h2 .destaque {
+            color: var(--verde-claro);
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--cinza-texto);
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .about-features li {
+            padding: 8px 0;
+            color: var(--branco);
+            font-weight: 500;
+        }
+
+        .about-features li::before {
+            content: "✓ ";
+            color: var(--verde-claro);
+            font-weight: bold;
+            margin-right: 8px;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.8);
+        }
+
+        /* ===== CONTATO ===== */
+        .contact-section {
+            background: linear-gradient(135deg, var(--preto-suave) 0%, var(--cinza) 100%);
+            border-radius: 20px;
+            padding: 70px 5%;
+            margin: 40px auto;
+            max-width: 1200px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.1);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 15px 20px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--preto);
+            color: var(--branco);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #666;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--verde-claro);
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ===== INFO BAR ===== */
+        .info-bar {
+            background: linear-gradient(90deg, var(--verde-forte), var(--verde-medio));
+            padding: 15px 5%;
+            text-align: center;
+            font-weight: 600;
+            color: var(--branco);
+            letter-spacing: 1px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--preto-suave);
+            color: var(--branco);
+            padding: 50px 5% 20px;
+            margin-top: 60px;
+            border-top: 2px solid var(--verde-medio);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--verde-claro);
+            letter-spacing: 1px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: var(--cinza-texto);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--verde-claro);
+            transform: translateX(5px);
+        }
+
+        .aviso-idade {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid var(--verde-medio);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+            color: var(--verde-claro);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(34, 197, 94, 0.2);
+            font-size: 0.85rem;
+            color: var(--cinza-texto);
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 250px;
+                font-size: 6rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .info-bar {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ===== SCROLLBAR CUSTOMIZADA ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--preto);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--verde-medio), var(--verde-forte));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--verde-claro);
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes brilho {
+            0%, 100% { text-shadow: 0 0 15px rgba(74, 222, 128, 0.6); }
+            50% { text-shadow: 0 0 30px rgba(74, 222, 128, 1); }
+        }
+
+        .logo {
+            animation: brilho 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== INFO BAR ===== -->
+    <div class="info-bar">
+        🚚 FRETE GRÁTIS acima de R$ 199 | 🔞 VENDA PROIBIDA PARA MENORES DE 18 ANOS
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span>🍃</span> GREEN LEAF
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="cart-btn" onclick="verCarrinho()">
+                🛒 Carrinho
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">✦ A Tabacaria Premium do Brasil ✦</div>
+            <h1>A experiência <span class="destaque">premium</span> que você merece</h1>
+            <p>Produtos selecionados, atendimento especializado e entrega rápida. Tudo em um só lugar.</p>
+            <button class="btn-primary" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">
+                🛍️ Ver Produtos
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORIAS ===== -->
+    <section id="categorias">
+        <h2 class="section-title">Nossas <span class="destaque">Categorias</span></h2>
+        <p class="section-subtitle">Explore nossa variedade de produtos premium</p>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">🚬</div>
+                <h3>Cigarros</h3>
+                <p>Diversas marcas e sabores</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💨</div>
+                <h3>Vapes & Pods</h3>
+                <p>Modelos modernos e descartáveis</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🍃</div>
+                <h3>Acessórios</h3>
+                <p>Sedas, piteiras e muito mais</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🔥</div>
+                <h3>Isqueiros</h3>
+                <p>Clássicos e personalizados</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💧</div>
+                <h3>Essências</h3>
+                <p>Aromas especiais e importados</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUTOS ===== -->
+    <section class="products-section" id="produtos">
+        <h2 class="section-title">Loja <span class="destaque">Online</span></h2>
+        <p class="section-subtitle">Produtos selecionados com qualidade garantida</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    🚬
+                    <span class="product-badge">-20%</span>
+                </div>
+                <div class="product-info">
+                    <h3>Cigarro Marlboro</h3>
+                    <p>Maço com 20 unidades do clássico vermelho.</p>
+                    <div class="product-price">R$ 12,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Cigarro Marlboro', 12.90)">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    💨
+                    <span class="product-badge">NOVO</span>
+                </div>
+                <div class="product-info">
+                    <h3>Vape Descartável</h3>
+                    <p>Pod descartável com 5000 puffs sabor menta.</p>
+                    <div class="product-price">R$ 89,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Vape Descartável', 89.90)">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    🍃
+                </div>
+                <div class="product-info">
+                    <h3>Seda King Size</h3>
+                    <p>Sedas premium extra finas para enrolar.</p>
+                    <div class="product-price">R$ 8,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Seda King Size', 8.90)">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    🔥
+                    <span class="product-badge">TOP</span>
+                </div>
+                <div class="product-info">
+                    <h3>Isqueiro Zippo</h3>
+                    <p>Isqueiro metálico recarregável estilo clássico.</p>
+                    <div class="product-price">R$ 149,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Isqueiro Zippo', 149.90)">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    💧
+                </div>
+                <div class="product-info">
+                    <h3>Essência Premium</h3>
+                    <p>Essência importada sabor tabaco doce 30ml.</p>
+                    <div class="product-price">R$ 59,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Essência Premium', 59.90)">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    🌿
+                    <span class="product-badge">-15%</span>
+                </div>
+                <div class="product-info">
+                    <h3>Piteira de Vidro</h3>
+                    <p>Piteira reutilizável de vidro resistente.</p>
+                    <div class="product-price">R$ 25,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Piteira de Vidro', 25.90)">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    ⚡
+                    <span class="product-badge">NOVO</span>
+                </div>
+                <div class="product-info">
+                    <h3>Pod Recarregável</h3>
+                    <p>Sistema pod recarregável com bateria longa.</p>
+                    <div class="product-price">R$ 199,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Pod Recarregável', 199.90)">Adicionar</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    🎁
+                </div>
+                <div class="product-info">
+                    <h3>Kit Completo</h3>
+                    <p>Kit com seda, piteira, dichavador e isqueiro.</p>
+                    <div class="product-price">R$ 129,90</div>
+                    <button class="btn-buy" onclick="adicionarCarrinho('Kit Completo', 129.90)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE ===== -->
+    <section id="sobre">
+        <h2 class="section-title">Sobre <span class="destaque">Nós</span></h2>
+        <p class="section-subtitle">Conheça nossa história</p>
+        <div class="about-container">
+            <div class="about-image">🍃</div>
+            <div class="about-text">
+                <h2>Green Leaf <span class="destaque">Tabacaria</span></h2>
+                <p>A <strong>Green Leaf</strong> nasceu da paixão por oferecer produtos de qualidade superior aos amantes do tabaco e acessórios premium.</p>
+                <p>Com anos de experiência no mercado, garantimos produtos originais, atendimento especializado e preços competitivos.</p>
+                <ul class="about-features">
+                    <li>Produtos 100% originais</li>
+                    <li>Entrega rápida e discreta</li>
+                    <li>Atendimento especializado</li>
+                    <li>Pagamento facilitado</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section class="contact-section" id="contato">
+        <h2 class="section-title">Fale <span class="destaque">Conosco</span></h2>
+        <p class="section-subtitle">Tire suas dúvidas ou faça seu pedido</p>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! 🍃 A Green Leaf entrará em contato em breve.')">
+            <input type="text" placeholder="Seu nome" required>
+            <input type="email" placeholder="Seu e-mail" required>
+            <input type="tel" placeholder="Seu telefone">
+            <textarea placeholder="Sua mensagem..." required></textarea>
+            <button type="submit" class="btn-primary">Enviar Mensagem</button>
+        </form>
+    </section>
+
+    <!-- ===== AVISO ===== -->
+    <div class="aviso-idade">
+        🔞 ATENÇÃO: VENDA PROIBIDA PARA MENORES DE 18 ANOS. Este site é destinado exclusivamente a maiores de idade.
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>🍃 GREEN LEAF</h3>
+                <p>A tabacaria premium que oferece o melhor para você.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Links Rápidos</h3>
+                <a href="#inicio">Início</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#sobre">Sobre</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <p>📍 Av. Verde, 420</p>
+                <p>📞 (11) 99999-9999</p>
+                <p>✉️ contato@greenleaf.com</p>
+            </div>
+            <div class="footer-col">
+                <h3>Redes Sociais</h3>
+                <a href="#">📷 Instagram</a>
+                <a href="#">👍 Facebook</a>
+                <a href="#">💬 WhatsApp</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Green Leaf Tabacaria - Todos os direitos reservados 🍃</p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        let carrinho = [];
+
+        // Confirmação de maioridade
+        window.addEventListener('DOMContentLoaded', () => {
+            const confirmacao = confirm('🔞 ATENÇÃO!\n\nEste site vende produtos destinados apenas a maiores de 18 anos.\n\nVocê confirma que tem 18 anos ou mais?');
+            if (!confirmacao) {
+                document.body.innerHTML = `
+                    <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#0A0A0A;color:#4ADE80;text-align:center;padding:20px;font-family:sans-serif;">
+                        <div>
+                            <h1 style="font-size:3rem;">🔞</h1>
+                            <h2>Acesso Negado</h2>
+                            <p style="color:#B0B0B0;margin-top:20px;">Este site é destinado apenas a maiores de 18 anos.</p>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+
+        function adicionarCarrinho(produto, preco) {
+            const itemExistente = carrinho.find(item => item.nome === produto);
+            if (itemExistente) {
+                itemExistente.quantidade++;
+            } else {
+                carrinho.push({ nome: produto, preco: preco, quantidade: 1 });
+            }
+
+            const btn = document.querySelector('.cart-btn');
+            const totalItens = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+            btn.innerHTML = `🛒 Carrinho (${totalItens})`;
+            btn.style.background = 'linear-gradient(135deg, #4ADE80, #22C55E)';
+            setTimeout(() => {
+                btn.style.background = 'linear-gradient(135deg, #22C55E, #16A34A)';
+            }, 300);
+
+            alert(`✨ "${produto}" foi adicionado ao carrinho!\n\nTotal de itens: ${totalItens}`);
+        }
+
+        function verCarrinho() {
+            if (carrinho.length === 0) {
+                alert('Seu
